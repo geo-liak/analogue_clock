@@ -8,7 +8,6 @@ function init() {
     ctx = canvas.getContext("2d");
     canvas.width = canvas.height = canvasSide;
 
-
     window.setInterval(drawCanvas, interval);
 }
 
@@ -114,7 +113,7 @@ function createScale() {
         if (i % 30 == 0) {
             // It will calculate the point from center until the 91.5% of the radius. 
             // This point will be extended on the radius and will be connected to the circumference.
-            length = circle.radius * 0.915; 
+            length = circle.radius * 0.915;
         } else {
             length = circle.radius * 0.97;
         }
@@ -147,13 +146,13 @@ function time() {
         "minutes": angleMinutes,
         "seconds": angleSeconds
     }
-
+    
     return now;
 }
 
-Hand = function (width, length) {
-    this.width = width,
-        this.length = length
+function Hand(width, length) {
+    this.width = width;
+    this.length = length;
 }
 
 function showTime() {
@@ -163,7 +162,7 @@ function showTime() {
     secondHand = new Hand(1, circle.radius * 0.86);
     drawHand(getPointOnCircle(now.hours, hourHand.length), hourHand.width);
     drawHand(getPointOnCircle(now.minutes, minuteHand.length), minuteHand.width);
-    drawHand(getPointOnCircle(now.seconds - 180, 35), getPointOnCircle(now.seconds, secondHand.length), secondHand.width);
+    drawHand(getPointOnCircle(now.seconds - 180, circle.radius*0.12), getPointOnCircle(now.seconds, secondHand.length), secondHand.width);
 
 }
 
@@ -178,7 +177,7 @@ function drawHand(startPoint, endPoint, width) {
     }
 
     ctx.lineWidth = width;
-    ctx.strokeStyle = "black";
+    ctx.strokeStyle = "white";
     ctx.lineCap = "round";
     ctx.beginPath();
     ctx.moveTo(startPoint.x, startPoint.y);
